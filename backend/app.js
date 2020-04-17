@@ -18,6 +18,7 @@ axios
   })
   .catch(error => {
     console.error(error)
+    res.send('Server is 404')    
   })
 })
 
