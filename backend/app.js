@@ -7,8 +7,6 @@ const port = 5000
 app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/new', (req, res) => res.send('My new route'))
 app.get('/advice', (req, res) => {
-    
-
 axios
   .get('https://api.adviceslip.com/advice')
   .then(response => {

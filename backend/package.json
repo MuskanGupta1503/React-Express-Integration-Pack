@@ -2,9 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "React-Express",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "client": "cd client && npm run start",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "author": "Sabuj Jana",
   "license": "MIT",
@@ -12,5 +14,8 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }
