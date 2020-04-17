@@ -1,8 +1,11 @@
 const express = require('express')
 const request = require('request')
+const path = require('path');
 const axios = require('axios')
 const app = express()
-const port = 5000
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/new', (req, res) => res.send('My new route'))
@@ -20,5 +23,12 @@ axios
   })
 })
 
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
+
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
