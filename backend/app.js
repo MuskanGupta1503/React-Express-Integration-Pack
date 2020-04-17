@@ -1,19 +1,24 @@
 const express = require('express')
 const request = require('request')
+const axios = require('axios')
 const app = express()
 const port = 5000
 
 app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/new', (req, res) => res.send('My new route'))
 app.get('/advice', (req, res) => {
-    request('https://api.adviceslip.com/advice', function (error, response, body) {
-    console.error('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
-    if(!error){
-        res.send(body);
-    }
-    });
+    
+
+axios
+  .get('https://api.adviceslip.com/advice')
+  .then(response => {
+    console.log(`statusCode: ${res.statusCode}`)
+    console.log(response)
+    res.send(response.data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
 })
 
 
